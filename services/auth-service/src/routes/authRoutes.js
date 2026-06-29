@@ -87,4 +87,11 @@ router.post('/login', async (req, res) => {
     }
 });
 
+const { requireAuth } = require('../middleware/authMiddleware');
+
+// ---- Giriş yapmış kullanıcının kendi bilgisi ----
+router.get('/me', requireAuth, (req, res) => {
+    res.json({ user: req.user });
+});
+
 module.exports = router;
